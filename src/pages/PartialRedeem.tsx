@@ -6,8 +6,10 @@ import { Input } from "@/components/ui/input";
 import { Gift, ArrowLeft, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function PartialRedeem() {
+  const { t } = useLanguage();
   const [redeemAmount, setRedeemAmount] = useState("");
   const voucher = {
     type: "Beratungstermin",
@@ -29,25 +31,25 @@ export default function PartialRedeem() {
             
             <div className="bg-gray-700 text-white p-3 mb-1">
               <p className="flex justify-between">
-                <span>Gesamtwert:</span>
+                <span>{t('totalValue')}:</span>
                 <span>{voucher.totalValue}</span>
               </p>
             </div>
             
             <div className="bg-blue-500 text-white p-3 mb-6">
               <p className="flex justify-between">
-                <span>Noch verfügbar:</span>
+                <span>{t('availableValue')}:</span>
                 <span>{voucher.availableValue}</span>
               </p>
             </div>
             
             <div className="mb-6 text-center">
               <p className="text-gray-700 mb-3">
-                Wie viel möchten Sie einlösen? Geben Sie einen Betrag in € ein!
+                {t('howMuchRedeem')}
               </p>
               <Input 
                 type="text" 
-                placeholder="Einlösewert" 
+                placeholder={t('redeemAmount')} 
                 className="border-gray-300 text-center"
                 value={redeemAmount}
                 onChange={(e) => setRedeemAmount(e.target.value)}
@@ -68,12 +70,12 @@ export default function PartialRedeem() {
               disabled={!redeemAmount}
             >
               <Gift size={20} />
-              Gutschein-Teil einlösen
+              {t('redeemPart')}
             </Button>
             
             <Link to="/">
               <Button variant="outline" className="w-full border-white border-2 text-white hover:bg-blue-600 py-3">
-                zur Startseite
+                {t('goToHomepage')}
               </Button>
             </Link>
           </div>

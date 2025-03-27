@@ -4,8 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Check, QrCode, ArrowLeft, X, Gift } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function RedemptionSuccess() {
+  const { t } = useLanguage();
+  
   // In a real app, this would come from an API
   const redemptionDetails = {
     type: "Beratungstermin",
@@ -24,14 +27,14 @@ export default function RedemptionSuccess() {
             
             <div className="bg-gray-700 text-white p-3 mb-1">
               <p className="flex justify-between">
-                <span>Gesamtwert:</span>
+                <span>{t('totalValue')}:</span>
                 <span>{redemptionDetails.totalValue}</span>
               </p>
             </div>
             
             <div className="bg-blue-500 text-white p-3 mb-6">
               <p className="flex justify-between">
-                <span>Noch verfügbar:</span>
+                <span>{t('availableValue')}:</span>
                 <span>{redemptionDetails.availableValue}</span>
               </p>
             </div>
@@ -41,10 +44,10 @@ export default function RedemptionSuccess() {
                 <Check size={24} className="text-white" />
               </div>
               {redemptionDetails.fullyRedeemed ? (
-                <p className="text-gray-800 font-medium">Der Gutschein wurde eingelöst</p>
+                <p className="text-gray-800 font-medium">{t('voucherRedeemed')}</p>
               ) : (
                 <p className="text-gray-800 font-medium">
-                  Es wurden {redemptionDetails.redeemedAmount} des Gutscheins eingelöst
+                  {t('partiallyRedeemed').replace('{{amount}}', redemptionDetails.redeemedAmount)}
                 </p>
               )}
             </div>
@@ -60,20 +63,20 @@ export default function RedemptionSuccess() {
             {!redemptionDetails.fullyRedeemed && (
               <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 flex items-center justify-center gap-2">
                 <Gift size={20} />
-                Gutschein-Teil einlösen
+                {t('redeemPart')}
               </Button>
             )}
             
             <Link to="/scan">
               <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 flex items-center justify-center gap-2">
                 <QrCode size={20} />
-                Gutschein scannen
+                {t('scanVoucher')}
               </Button>
             </Link>
             
             <Link to="/">
               <Button variant="outline" className="w-full border-white border-2 text-white hover:bg-blue-600 py-3">
-                zur Startseite
+                {t('goToHomepage')}
               </Button>
             </Link>
           </div>
