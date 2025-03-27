@@ -30,6 +30,13 @@ const translations = {
     'howMuchRedeem': 'Wie viel möchten Sie einlösen? Geben Sie einen Betrag in € ein!',
     'redeemAmount': 'Einlösewert',
     
+    // Home Seite
+    'appTitle': 'GUTSCHEIN- UND TICKETSCANNER',
+    'appDescription': 'Schnell und einfach Gutscheine einlösen, prüfen und aufladen sowie Tickets prüfen & entwerten.',
+    'scanQrCode': 'QR-Code scannen',
+    'reloadVoucher': 'Gutschein aufladen',
+    'logout': 'Logout',
+    
     // Footer
     'contact': 'Kontakt/Hilfe',
     'imprint': 'Impressum',
@@ -54,6 +61,13 @@ const translations = {
     'goToHomepage': 'Go to homepage',
     'howMuchRedeem': 'How much would you like to redeem? Enter an amount in €!',
     'redeemAmount': 'Redemption value',
+    
+    // Home Page
+    'appTitle': 'VOUCHER AND TICKET SCANNER',
+    'appDescription': 'Quickly and easily redeem, check and reload vouchers as well as check & validate tickets.',
+    'scanQrCode': 'Scan QR Code',
+    'reloadVoucher': 'Reload Voucher',
+    'logout': 'Logout',
     
     // Footer
     'contact': 'Contact/Help',
