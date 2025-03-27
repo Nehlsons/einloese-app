@@ -2,7 +2,7 @@
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, QrCode, ArrowLeft, X } from "lucide-react";
+import { Check, QrCode, ArrowLeft, X, Gift } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function RedemptionSuccess() {
