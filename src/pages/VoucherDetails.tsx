@@ -1,11 +1,12 @@
-
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Check, X, Gift, QrCode, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function VoucherDetails() {
+  const { t } = useLanguage();
   const voucher = {
     type: "Beratungstermin",
     totalValue: "499,00 €",
@@ -56,13 +57,13 @@ export default function VoucherDetails() {
           <div className="space-y-3">
             <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 flex items-center justify-center gap-2">
               <Gift size={20} />
-              Gutschein einlösen
+              {t('redeemPart')}
             </Button>
             
             {voucher.fragmentable && (
               <Link to="/partial-redeem">
-                <Button variant="outline" className="w-full border-white border-2 text-white hover:bg-blue-600 py-3">
-                  Gutschein Teileinlösung
+                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 flex items-center justify-center gap-2">
+                  {t('redeemPart')}
                 </Button>
               </Link>
             )}
