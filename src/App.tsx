@@ -12,7 +12,6 @@ import VoucherDetails from "./pages/VoucherDetails";
 import PartialRedeem from "./pages/PartialRedeem";
 import RedemptionSuccess from "./pages/RedemptionSuccess";
 import ReloadVoucher from "./pages/ReloadVoucher";
-import AppTour from "./pages/AppTour";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,7 +31,6 @@ const App = () => (
             <Route path="/partial-redeem" element={<PartialRedeem />} />
             <Route path="/redemption-success" element={<RedemptionSuccess />} />
             <Route path="/reload" element={<ReloadVoucher />} />
-            <Route path="/app-tour" element={<AppTour />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

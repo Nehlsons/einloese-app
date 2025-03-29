@@ -1,16 +1,15 @@
-
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { QrCode, Gift, Film } from "lucide-react";
+import { QrCode, Gift } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/context/LanguageContext";
-
 export default function Home() {
-  const { t, language } = useLanguage();
-  
-  return (
-    <Layout>
+  const {
+    t,
+    language
+  } = useLanguage();
+  return <Layout>
       <div className="container mx-auto px-4 py-8">
         <Card className="bg-white shadow-sm mb-8">
           <div className="p-6 text-center">
@@ -36,13 +35,6 @@ export default function Home() {
                 </Button>
               </Link>
               
-              <Link to="/app-tour">
-                <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 flex items-center justify-center gap-2">
-                  <Film size={20} />
-                  {language === 'de' ? 'App-Tour starten' : 'Start App Tour'}
-                </Button>
-              </Link>
-              
               <Button variant="outline" className="w-full border-gray-300 py-3 text-sky-50 bg-blue-500 hover:bg-blue-400">
                 {language === 'de' ? 'Logout' : 'Logout'}
               </Button>
@@ -50,6 +42,5 @@ export default function Home() {
           </div>
         </Card>
       </div>
-    </Layout>
-  );
+    </Layout>;
 }
