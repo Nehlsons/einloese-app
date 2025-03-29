@@ -2,7 +2,7 @@
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowLeft, CreditCard, QrCode } from "lucide-react";
+import { ArrowLeft, CreditCard, QrCode, X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/context/LanguageContext";
 import { useState } from "react";
@@ -16,7 +16,8 @@ export default function ReloadVoucher() {
   const [voucherCode, setVoucherCode] = useState("");
   const [amount, setAmount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [scanning, setScanning] = useState(false);
+  const [showManualEntry, setShowManualEntry] = useState(false);
+  const [scanning, setScanning] = useState(true);
 
   const handleReload = (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,6 +48,7 @@ export default function ReloadVoucher() {
 
   const startScanning = () => {
     setScanning(true);
+    setShowManualEntry(false);
     
     // Simulate finding a voucher after 2 seconds
     setTimeout(() => {
@@ -59,7 +61,13 @@ export default function ReloadVoucher() {
           ? `Gutschein ${mockVoucherCode} gefunden`
           : `Voucher ${mockVoucherCode} found`
       );
+      setShowManualEntry(true);
     }, 2000);
+  };
+
+  const switchToManualEntry = () => {
+    setScanning(false);
+    setShowManualEntry(true);
   };
 
   return (
@@ -78,7 +86,7 @@ export default function ReloadVoucher() {
           </h1>
         </div>
 
-        {scanning ? (
+        {!showManualEntry ? (
           <Card className="bg-white shadow-sm mb-6">
             <div className="p-6 text-center">
               <h2 className="text-lg font-medium mb-4">
@@ -96,12 +104,20 @@ export default function ReloadVoucher() {
                 </div>
               </div>
               
-              <Button 
-                className="w-full bg-red-500 hover:bg-red-600 text-white py-3 flex items-center justify-center gap-2"
-                onClick={() => setScanning(false)}
-              >
-                {language === 'de' ? 'Scannen abbrechen' : 'Cancel Scanning'}
-              </Button>
+              <div className="space-y-3">
+                <Button 
+                  className="w-full bg-red-500 hover:bg-red-600 text-white py-3 flex items-center justify-center gap-2"
+                  onClick={switchToManualEntry}
+                >
+                  {language === 'de' ? 'Manuell eingeben' : 'Enter Manually'}
+                </Button>
+                
+                <Link to="/">
+                  <Button variant="outline" className="w-full border-gray-300 py-3">
+                    {language === 'de' ? 'Abbrechen' : 'Cancel'}
+                  </Button>
+                </Link>
+              </div>
             </div>
           </Card>
         ) : (
