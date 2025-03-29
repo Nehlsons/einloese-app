@@ -1,16 +1,15 @@
-
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { QrCode, Gift } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/context/LanguageContext";
-
 export default function Home() {
-  const { t, language } = useLanguage();
-  
-  return (
-    <Layout>
+  const {
+    t,
+    language
+  } = useLanguage();
+  return <Layout>
       <div className="container mx-auto px-4 py-8">
         <Card className="bg-white shadow-sm mb-8">
           <div className="p-6 text-center">
@@ -18,10 +17,7 @@ export default function Home() {
               {language === 'de' ? 'GUTSCHEIN- UND TICKETSCANNER' : 'VOUCHER AND TICKET SCANNER'}
             </h1>
             <p className="text-gray-600 mb-6">
-              {language === 'de'
-                ? 'Schnell und einfach Gutscheine einlösen, prüfen und aufladen sowie Tickets prüfen & entwerten.'
-                : 'Quickly and easily redeem, check and reload vouchers as well as check & validate tickets.'
-              }
+              {language === 'de' ? 'Schnell und einfach Gutscheine einlösen, prüfen und aufladen sowie Tickets prüfen & entwerten.' : 'Quickly and easily redeem, check and reload vouchers as well as check & validate tickets.'}
             </p>
             
             <div className="space-y-3">
@@ -39,13 +35,12 @@ export default function Home() {
                 </Button>
               </Link>
               
-              <Button variant="outline" className="w-full border-gray-300 py-3">
+              <Button variant="outline" className="w-full border-gray-300 py-3 text-sky-50 bg-blue-500 hover:bg-blue-400">
                 {language === 'de' ? 'Logout' : 'Logout'}
               </Button>
             </div>
           </div>
         </Card>
       </div>
-    </Layout>
-  );
+    </Layout>;
 }
