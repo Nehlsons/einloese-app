@@ -1,17 +1,14 @@
-
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { QrCode, Gift, Users } from "lucide-react";
+import { QrCode, Gift } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/context/LanguageContext";
-
 export default function Home() {
   const {
     t,
     language
   } = useLanguage();
-  
   return <Layout>
       <div className="container mx-auto px-4 py-8">
         <Card className="bg-white shadow-sm mb-8">
@@ -35,13 +32,6 @@ export default function Home() {
                 <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 flex items-center justify-center gap-2">
                   <Gift size={20} />
                   {language === 'de' ? 'Gutschein aufladen' : 'Reload Voucher'}
-                </Button>
-              </Link>
-              
-              <Link to="/team-sharing">
-                <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 flex items-center justify-center gap-2">
-                  <Users size={20} />
-                  {language === 'de' ? 'Status mit Team teilen' : 'Share Status with Team'}
                 </Button>
               </Link>
               
