@@ -1,4 +1,3 @@
-
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -15,12 +14,10 @@ export default function RedemptionSuccess() {
   const [voucherDetails, setVoucherDetails] = useState<VoucherResponse | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Get voucher code and redeemed amount from URL query params
   const searchParams = new URLSearchParams(location.search);
   const voucherCode = searchParams.get('code') || "";
   const redeemedAmount = parseFloat(searchParams.get('amount') || "0");
-  
-  // Format the redeemed amount based on language
+
   const formattedRedeemedAmount = new Intl.NumberFormat(language === 'de' ? 'de-DE' : 'en-US', { 
     style: 'currency', 
     currency: 'EUR' 
@@ -54,11 +51,9 @@ export default function RedemptionSuccess() {
     );
   }
 
-  // Calculate redemption details
   const fullyRedeemed = voucherDetails?.voucher?.availableValue === 0 || 
                          redeemedAmount >= (voucherDetails?.voucher?.availableValue || 0);
   
-  // Format values based on language
   const formattedTotalValue = voucherDetails?.voucher ? 
     new Intl.NumberFormat(language === 'de' ? 'de-DE' : 'en-US', { 
       style: 'currency', 
@@ -143,7 +138,7 @@ export default function RedemptionSuccess() {
             </Link>
             
             <Link to="/">
-              <Button variant="outline" className="w-full border-white border-2 text-white hover:bg-blue-600 py-3">
+              <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 flex items-center justify-center gap-2">
                 {t('goToHomepage')}
               </Button>
             </Link>
