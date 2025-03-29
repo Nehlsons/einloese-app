@@ -1,4 +1,3 @@
-
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -9,9 +8,11 @@ import { useState, useEffect } from "react";
 import { getVoucherDetails, VoucherResponse } from "@/services/voucherService";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
-
 export default function VoucherDetails() {
-  const { t, language } = useLanguage();
+  const {
+    t,
+    language
+  } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
   const [voucherDetails, setVoucherDetails] = useState<VoucherResponse | null>(null);
@@ -22,7 +23,6 @@ export default function VoucherDetails() {
   // Get voucher code from URL query params or use a default
   const searchParams = new URLSearchParams(location.search);
   const voucherCode = searchParams.get('code') || "18652626117825936623";
-
   useEffect(() => {
     const fetchVoucherDetails = async () => {
       try {
@@ -37,46 +37,36 @@ export default function VoucherDetails() {
         setLoading(false);
       }
     };
-
     fetchVoucherDetails();
   }, [voucherCode, t]);
-
   if (loading) {
-    return (
-      <Layout>
+    return <Layout>
         <div className="container mx-auto px-4 py-6 text-center">
           <p>{t('loading')}...</p>
         </div>
-      </Layout>
-    );
+      </Layout>;
   }
-
   if (error || !voucherDetails) {
-    return (
-      <Layout>
+    return <Layout>
         <div className="container mx-auto px-4 py-6 text-center">
           <p className="text-red-500">{error || t('voucherNotFound')}</p>
-          <Button 
-            className="mt-4 bg-blue-500 hover:bg-blue-600" 
-            onClick={() => navigate('/')}
-          >
+          <Button className="mt-4 bg-blue-500 hover:bg-blue-600" onClick={() => navigate('/')}>
             <ArrowLeft size={20} className="mr-2" />
             {t('goToHomepage')}
           </Button>
         </div>
-      </Layout>
-    );
+      </Layout>;
   }
-
-  const { voucher } = voucherDetails;
-  const formattedTotalValue = new Intl.NumberFormat(language === 'de' ? 'de-DE' : 'en-US', { 
-    style: 'currency', 
-    currency: 'EUR' 
+  const {
+    voucher
+  } = voucherDetails;
+  const formattedTotalValue = new Intl.NumberFormat(language === 'de' ? 'de-DE' : 'en-US', {
+    style: 'currency',
+    currency: 'EUR'
   }).format(voucher.totalValue);
-  
-  const formattedAvailableValue = new Intl.NumberFormat(language === 'de' ? 'de-DE' : 'en-US', { 
-    style: 'currency', 
-    currency: 'EUR' 
+  const formattedAvailableValue = new Intl.NumberFormat(language === 'de' ? 'de-DE' : 'en-US', {
+    style: 'currency',
+    currency: 'EUR'
   }).format(voucher.availableValue);
 
   // Format expiry date based on language
@@ -86,16 +76,10 @@ export default function VoucherDetails() {
     month: 'long',
     day: 'numeric'
   }).format(expiryDate);
-
-  return (
-    <Layout>
+  return <Layout>
       <div className="container mx-auto px-4 py-6">
         <div className="flex items-center mb-4">
-          <Button 
-            variant="ghost" 
-            className="p-2 mr-2" 
-            onClick={() => navigate(-1)}
-          >
+          <Button variant="ghost" className="p-2 mr-2" onClick={() => navigate(-1)}>
             <ArrowLeft size={20} />
           </Button>
           <h1 className="text-xl font-bold">{t('voucherDetails')}</h1>
@@ -124,21 +108,17 @@ export default function VoucherDetails() {
               <span>{t('validUntil')}: {formattedExpiryDate}</span>
             </div>
             
-            {!voucher.redeemed && voucher.availableValue > 0 ? (
-              <div className="flex flex-col items-center mb-4">
+            {!voucher.redeemed && voucher.availableValue > 0 ? <div className="flex flex-col items-center mb-4">
                 <div className="bg-green-500 rounded-full p-3 mb-3">
                   <Check size={24} className="text-white" />
                 </div>
                 <p className="text-gray-800 font-medium">{t('voucherIsValid')}</p>
-              </div>
-            ) : (
-              <div className="flex flex-col items-center mb-4">
+              </div> : <div className="flex flex-col items-center mb-4">
                 <div className="bg-red-500 rounded-full p-3 mb-3">
                   <X size={24} className="text-white" />
                 </div>
                 <p className="text-gray-800 font-medium">{t('voucherAlreadyRedeemed')}</p>
-              </div>
-            )}
+              </div>}
 
             <Collapsible open={showInfo} onOpenChange={setShowInfo} className="mt-4 border rounded-lg overflow-hidden">
               <CollapsibleTrigger className="flex w-full items-center justify-between bg-gray-100 p-3 text-left">
@@ -169,30 +149,23 @@ export default function VoucherDetails() {
           </div>
         </Card>
         
-        <div className="bg-blue-500 p-4 rounded-lg text-white mb-4 relative">
+        <div className="p-4 rounded-lg text-white mb-4 relative mx-0 bg-zinc-50 px-[11px]">
           <button className="absolute top-2 right-2">
             <X size={20} />
           </button>
           
           <div className="space-y-3">
-            {!voucher.redeemed && voucher.availableValue > 0 && (
-              <Button 
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 flex items-center justify-center gap-2"
-                onClick={() => navigate(`/redemption-success?code=${voucher.code}&amount=${voucher.availableValue}`)}
-              >
+            {!voucher.redeemed && voucher.availableValue > 0 && <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 flex items-center justify-center gap-2" onClick={() => navigate(`/redemption-success?code=${voucher.code}&amount=${voucher.availableValue}`)}>
                 <Gift size={20} />
                 {t('redeemFull')}
-              </Button>
-            )}
+              </Button>}
             
-            {!voucher.redeemed && voucher.availableValue > 0 && voucher.fragmentable && (
-              <Link to={`/partial-redeem?code=${voucher.code}`}>
+            {!voucher.redeemed && voucher.availableValue > 0 && voucher.fragmentable && <Link to={`/partial-redeem?code=${voucher.code}`}>
                 <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 flex items-center justify-center gap-2">
                   <Gift size={20} />
                   {t('redeemPart')}
                 </Button>
-              </Link>
-            )}
+              </Link>}
 
             <Link to="/scan">
               <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 flex items-center justify-center gap-2">
@@ -209,6 +182,5 @@ export default function VoucherDetails() {
           </div>
         </div>
       </div>
-    </Layout>
-  );
+    </Layout>;
 }
