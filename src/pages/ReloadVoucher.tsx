@@ -106,7 +106,7 @@ export default function ReloadVoucher() {
               
               <div className="space-y-3">
                 <Button 
-                  className="w-full bg-red-500 hover:bg-red-600 text-white py-3 flex items-center justify-center gap-2"
+                  className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 flex items-center justify-center gap-2"
                   onClick={switchToManualEntry}
                 >
                   {language === 'de' ? 'Manuell eingeben' : 'Enter Manually'}
