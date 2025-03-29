@@ -8,7 +8,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { toast } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
 export default function ReloadVoucher() {
   const { t, language } = useLanguage();
