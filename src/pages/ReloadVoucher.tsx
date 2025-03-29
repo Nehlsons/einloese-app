@@ -1,3 +1,4 @@
+
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -113,8 +114,7 @@ export default function ReloadVoucher() {
                 
                 <Link to="/">
                   <Button 
-                    variant="default" 
-                    className="w-full py-3 flex items-center justify-center gap-2"
+                    className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 flex items-center justify-center gap-2"
                   >
                     <ArrowLeft size={20} />
                     {language === 'de' ? 'Zur Startseite' : 'Back to Home'}
@@ -180,9 +180,9 @@ export default function ReloadVoucher() {
                 
                 <Link to="/">
                   <Button 
-                    variant="default" 
-                    className="w-full py-3 flex items-center justify-center gap-2"
+                    className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 flex items-center justify-center gap-2"
                   >
+                    <ArrowLeft size={20} />
                     {language === 'de' ? 'Zur Startseite' : 'Back to Home'}
                   </Button>
                 </Link>
