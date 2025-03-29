@@ -1,4 +1,3 @@
-
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -113,8 +112,12 @@ export default function ReloadVoucher() {
                 </Button>
                 
                 <Link to="/">
-                  <Button variant="outline" className="w-full border-gray-300 py-3">
-                    {language === 'de' ? 'Abbrechen' : 'Cancel'}
+                  <Button 
+                    variant="default" 
+                    className="w-full py-3 flex items-center justify-center gap-2"
+                  >
+                    <ArrowLeft size={20} />
+                    {language === 'de' ? 'Zur Startseite' : 'Back to Home'}
                   </Button>
                 </Link>
               </div>
@@ -176,8 +179,11 @@ export default function ReloadVoucher() {
                 </Button>
                 
                 <Link to="/">
-                  <Button variant="outline" className="w-full border-gray-300 py-3">
-                    {language === 'de' ? 'Abbrechen' : 'Cancel'}
+                  <Button 
+                    variant="default" 
+                    className="w-full py-3 flex items-center justify-center gap-2"
+                  >
+                    {language === 'de' ? 'Zur Startseite' : 'Back to Home'}
                   </Button>
                 </Link>
               </form>
